@@ -1,0 +1,30 @@
+name: Build ModBootstrap
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build_arm64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Android NDK 27
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: "27.0.12077973"
+
+      - name: Compile libmodbootstrap.so
+        env:
+          ANDROID_NDK_ROOT: ${{ env.ANDROID_NDK_ROOT }}
+        run: |
+          chmod +x build-arm64.sh
+          ./build-arm64.sh
+
+      - name: Upload compiled so
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-libs
+          path: dist/lib/arm64-v8a/libmodbootstrap.so
