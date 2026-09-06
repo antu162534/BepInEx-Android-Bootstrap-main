@@ -11,10 +11,10 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Setup Android NDK 27
+      - name: Setup Android NDK r27c
         uses: nttld/setup-ndk@v1
         with:
-          ndk-version: "27.0.12077973"
+          ndk-version: "r27c"
 
       - name: Compile libmodbootstrap.so
         env:
