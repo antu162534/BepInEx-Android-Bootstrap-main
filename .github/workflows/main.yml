@@ -20,8 +20,8 @@ jobs:
         env:
           ANDROID_NDK_ROOT: ${{ env.ANDROID_NDK_ROOT }}
         run: |
-          chmod +x build-arm64.sh
-          ./build-arm64.sh
+          chmod +x build.sh
+          ./build.sh
 
       - name: Upload compiled so
         uses: actions/upload-artifact@v4
